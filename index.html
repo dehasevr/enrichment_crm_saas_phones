@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Enrichment CRM Saas Prototype</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- ===== Launch Modal ===== -->
+  <div class="launch-overlay" id="launchOverlay">
+    <div class="launch-modal">
+      <h1>🚀 New: Phone Enrichment</h1>
+      <p class="launch-description">
+        You can now find phone numbers for prospects directly in the list.
+        Use your first package of eCredits to single search or bulk phone enrichment.
+      </p>
+      <div class="launch-actions">
+        <button class="btn purple" id="launchTryBtn">Try it now</button>
+        <button class="btn outline" id="launchLaterBtn">Maybe later</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="app">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">Enrichment CRM<span>io</span></div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-item active">Prospects</div>
+        <div class="sidebar-item">Companies</div>
+      </div>
+
+      <div class="sidebar-tree">
+        <div class="tree-item open">Business</div>
+        <div class="tree-sub">
+          <div class="tree-leaf">Smart Data Solutions <span>200</span></div>
+          <div class="tree-leaf">Innovative Business <span>81</span></div>
+        </div>
+        <div class="tree-item">Professional Consulting <span>15</span></div>
+        <div class="tree-item active">International Business <span>2096</span></div>
+        <div class="tree-item">Dynamic Technology <span>98</span></div>
+        <div class="tree-item">Strategic Business Solutions <span>5</span></div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="upgrade">Upgrade plan</div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+
+      <!-- Global Nav -->
+      <div class="global-nav">
+        <div class="nav-left">
+          <div class="nav-item active">Leads</div>
+          <div class="nav-item">Finder</div>
+          <div class="nav-item">Verifier</div>
+          <div class="nav-item">Deliverability</div>
+          <div class="nav-item">Campaigns</div>
+          <div class="nav-item">LinkedIn</div>
+          <div class="nav-item">Unibox</div>
+          <div class="nav-item">AI Studio</div>
+          <div class="nav-item">CRM</div>
+          <div class="nav-item">Extensions</div>
+        </div>
+
+        <div class="announcement-bar" id="announcementBar">
+          <span>🎉 New feature: Phone enrichment is now available.</span>
+          <button class="announcement-btn" id="tryFeatureBtn">Try it</button>
+          <button class="announcement-close" id="closeAnnouncement">✕</button>
+        </div>
+
+        <div class="nav-right">
+          <div class="circle green"></div>
+          <div class="avatar">MK</div>
+        </div>
+      </div>
+
+      <!-- Secondary Header -->
+      <div class="secondary-header">
+        <h1>International Business</h1>
+        <div class="header-actions">
+          <button class="btn purple">Add prospects</button>
+          <button class="btn">Verify emails</button>
+          <button class="btn success">List ready for outreach</button>
+          <button class="btn">Send campaign</button>
+          <button class="btn small">...</button>
+          <button class="btn outline">Filters</button>
+        </div>
+      </div>
+
+      <!-- Bulk Header -->
+      <div class="bulk-header" id="bulkHeader" style="display:none;">
+        <div class="bulk-left">
+          <button class="bulk-collapse">−</button>
+          <button class="bulk-btn">+ Create deal</button>
+          <button class="bulk-btn">✓ Verify email</button>
+          <button class="bulk-btn get-numbers-btn" id="bulkGetNumbersBtn" disabled>
+            ⚡ Get numbers
+          </button>
+          <button class="bulk-btn">🏷 Add tags</button>
+          <button class="bulk-btn">🗑 Delete tags</button>
+          <button class="bulk-btn">⇄ Move prospect</button>
+          <button class="bulk-btn danger">🗑 Delete</button>
+        </div>
+        <div class="bulk-right">
+          Selected <span id="bulkSelectedCount">0</span> of 7996
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="table-container">
+        <div class="table-header row">
+          <div><input type="checkbox" id="selectAllCheckbox"></div>
+          <div>Prospect</div>
+          <div>Email</div>
+          <div>Status</div>
+          <div>Phone</div>
+        </div>
+
+        <!-- Row example states -->
+        <div class="row" data-type="simple">
+          <div><input type="checkbox" class="row-checkbox"></div>
+          <div class="prospect">
+            <div class="name">Christopher Roberts</div>
+            <div class="meta">Piraeus Bank • Sr. QA Automation</div>
+          </div>
+          <div class="email">
+            <div class="dot green"></div> chris.roberts@gmail.com
+          </div>
+          <div> <span class="tag green">LinkedIn</span> </div>
+          <div><button class="get-number" data-waterfall="true">⚡ Get number</button></div>
+        </div>
+        <div class="row" data-type="advanced">
+          <div><input type="checkbox" class="row-checkbox"></div>
+          <div class="prospect">
+            <div class="name">Charles Townsend</div>
+            <div class="meta">Trinetix • Recruitment Lead</div>
+          </div>
+          <div class="email">
+            <div class="dot green"></div> charles.town@gmail.com
+          </div>
+          <div> <span class="tag blue">Freelancer</span> </div>
+          <div><button class="get-number">⚡ Get number</button> </div>
+        </div>
+        <div class="row" data-type="advanced">
+          <div><input type="checkbox" class="row-checkbox"></div>
+          <div class="prospect">
+            <div class="name">Paul Crawford</div>
+            <div class="meta">Metro Exodus • Sr. QA Automation</div>
+          </div>
+          <div class="email">
+            <div class="dot yellow"></div> paul.crawford@gmail.com
+          </div>
+          <div> <span class="tag orange">Middle</span> <span class="tag purple">Marketing 2021</span> </div>
+          <div><button class="get-number">⚡ Get number</button> </div>
+        </div>
+        <div class="row" data-type="advanced">
+          <div><input type="checkbox" class="row-checkbox"></div>
+          <div class="prospect">
+            <div class="name">Margaret Booker</div>
+            <div class="meta">FinTech & DeFi • Senior Product Officer</div>
+          </div>
+          <div class="email">
+            <div class="dot yellow"></div> m.booker@gmail.com
+          </div>
+          <div> <span class="status-badge">Replied</span> <span class="status-badge">Contacted</span> </div>
+          <div> <button class="get-number">⚡ Get number</button> </div>
+        </div>
+        <div class="row" data-type="advanced">
+          <div><input type="checkbox" class="row-checkbox"></div>
+          <div class="prospect">
+            <div class="name">Oliver Peters</div>
+            <div class="meta">m’Acoom • Product Officer</div>
+          </div>
+          <div class="email">
+            <div class="dot green"></div> oliver.p@gmail.com
+          </div>
+          <div> <span class="status-badge">Replied</span> <span class="status-badge">Contacted</span> </div>
+          <div><button class="get-number">⚡ Get number</button> </div>
+        </div>
+
+        <!-- ===== Additional realistic rows ===== -->
+
+        <div class="row" data-type="advanced">
+          <div><input type="checkbox" class="row-checkbox"></div>
+          <div class="prospect">
+            <div class="name">Amelia Johnson</div>
+            <div class="meta">Stripe • Head of Growth</div>
+          </div>
+          <div class="email">
+            <div class="dot green"></div> amelia.johnson@stripe.com
+          </div>
+          <div> <span class="tag blue">Freelancer</span> <span class="tag purple">FinTech</span> </div>
+          <div><button class="get-number">⚡ Get number</button> </div>
+        </div>
+        <div class="row" data-type="advanced">
+          <div><input type="checkbox" class="row-checkbox"></div>
+          <div class="prospect">
+            <div class="name">Liam Anderson</div>
+            <div class="meta">HubSpot • Marketing Director</div>
+          </div>
+          <div class="email">
+            <div class="dot yellow"></div> liam.anderson@gmail.com
+          </div>
+          <div> <span class="status-badge">Replied</span> </div>
+          <div> <button class="get-number">⚡ Get number</button> </div>
+        </div>
+        <div class="row" data-type="advanced">
+          <div><input type="checkbox" class="row-checkbox"></div>
+          <div class="prospect">
+            <div class="name">Isabella Martinez</div>
+            <div class="meta">Freelance Consultant • B2B Strategy</div>
+          </div>
+          <div class="email">
+            <div class="dot green"></div> isabella@consulting.io
+          </div>
+          <div> <span class="tag green">LinkedIn</span> </div>
+          <div><button class="get-number">⚡ Get number</button> </div>
+        </div>
+        <div class="row" data-type="advanced">
+          <div><input type="checkbox" class="row-checkbox"></div>
+          <div class="prospect">
+            <div class="name">Noah Williams</div>
+            <div class="meta">Amazon Web Services • DevOps Lead</div>
+          </div>
+          <div class="email">
+            <div class="dot green"></div> noah.williams@amazon.com
+          </div>
+          <div> <span class="tag orange">Middle</span> <span class="tag purple">Cloud</span> </div>
+          <div><button class="get-number">⚡ Get number</button> </div>
+        </div>
+        <div class="row" data-type="advanced">
+          <div><input type="checkbox" class="row-checkbox"></div>
+          <div class="prospect">
+            <div class="name">Charlotte Thompson</div>
+            <div class="meta">Meta • Senior Product Manager</div>
+          </div>
+          <div class="email">
+            <div class="dot green"></div> charlotte.thompson@meta.com
+          </div>
+          <div> <span class="status-badge">Contacted</span> </div>
+          <div> <button class="get-number">⚡ Get number</button> </div>
+        </div>
+        <div class="row" data-type="advanced">
+          <div><input type="checkbox" class="row-checkbox"></div>
+          <div class="prospect">
+            <div class="name">James Wilson</div>
+            <div class="meta">Startup Founder • SaaS</div>
+          </div>
+          <div class="email">
+            <div class="dot yellow"></div> james@startup.io
+          </div>
+          <div> <span class="tag blue">Freelancer</span> <span class="tag green">LinkedIn</span> </div>
+          <div> <button class="get-number">⚡ Get number</button> </div>
+        </div>
+        <div class="row" data-type="advanced">
+          <div><input type="checkbox" class="row-checkbox"></div>
+          <div class="prospect">
+            <div class="name">Sophia Davis</div>
+            <div class="meta">Airbnb • Operations Manager</div>
+          </div>
+          <div class="email">
+            <div class="dot green"></div> sophia.davis@airbnb.com
+          </div>
+          <div> <span class="status-badge">Replied</span> <span class="status-badge">Contacted</span> </div>
+          <div class="phone"> +1 415 883 2299 </div>
+        </div>
+        <div class="row" data-type="advanced">
+          <div><input type="checkbox" class="row-checkbox"></div>
+          <div class="prospect">
+            <div class="name">Benjamin Clark</div>
+            <div class="meta">Google • Data Analyst</div>
+          </div>
+          <div class="email">
+            <div class="dot green"></div> benjamin.clark@google.com
+          </div>
+          <div> <span class="tag purple">Marketing 2021</span> </div>
+          <div> <button class="get-number">⚡ Get number</button> </div>
+        </div>
+      </div>
+
+      <div class="pagination">
+        <button>Prev</button>
+        <span>1</span>
+        <span class="active">15</span>
+        <span>42</span>
+        <button>Next</button>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ===== V3 ENRICHMENT MODAL ===== -->
+  <div class="modal-overlay" id="v3Overlay">
+    <div class="v3-modal">
+
+      <!-- HEADER -->
+      <div class="v3-header">
+        <div>
+          <h2>Find phone number</h2>
+          <p>We'll search for phone numbers using your prospect's existing data.</p>
+        </div>
+        <button class="close-btn" id="v3Close">✕</button>
+      </div>
+
+      <!-- BODY -->
+      <div class="v3-body">
+
+        <!-- SIMPLE SUMMARY (always visible) -->
+        <div class="simple-providers-row">
+          <div class="provider-mini purple">W</div>
+          <div class="arrow">→</div>
+          <div class="provider-mini green">Z</div>
+          <div class="arrow">→</div>
+          <div class="provider-mini navy">D</div>
+        </div>
+
+        <!-- ADVANCED (hidden by default) -->
+        <div id="advancedMode" style="display:none;">
+
+          <div class="v3-section-title">
+            <strong>Data providers</strong>
+            <span>Drag and drop providers to change the order.</span>
+          </div>
+
+          <div class="providers-list" id="providersList">
+
+            <!-- Provider -->
+            <div class="provider-card" data-credits="1">
+              <div class="provider-left">
+                <div class="drag-handle">⋮⋮</div>
+                <div class="provider-logo purple">W</div>
+                <div class="provider-name">Wiza</div>
+              </div>
+              <div class="provider-right">
+                <div class="credit-pill">⭐ 1</div>
+                <div class="toggle active"></div>
+              </div>
+            </div>
+
+            <div class="provider-card" data-credits="3">
+              <div class="provider-left">
+                <div class="drag-handle">⋮⋮</div>
+                <div class="provider-logo green">Z</div>
+                <div class="provider-name">Zeliq</div>
+              </div>
+              <div class="provider-right">
+                <div class="credit-pill">⭐ 3</div>
+                <div class="toggle active"></div>
+              </div>
+            </div>
+
+            <div class="provider-card" data-credits="5">
+              <div class="provider-left">
+                <div class="drag-handle">⋮⋮</div>
+                <div class="provider-logo navy">Dr</div>
+                <div class="provider-name">Dealroom</div>
+              </div>
+              <div class="provider-right">
+                <div class="credit-pill">⭐ 5</div>
+                <div class="toggle active"></div>
+              </div>
+            </div>
+
+            <div class="provider-card" data-credits="5">
+              <div class="provider-left">
+                <div class="drag-handle">⋮⋮</div>
+                <div class="provider-logo navy">Dp</div>
+                <div class="provider-name">Deal Prov</div>
+              </div>
+              <div class="provider-right">
+                <div class="credit-pill">⭐ 3</div>
+                <div class="toggle active"></div>
+              </div>
+            </div>
+            <div class="provider-card" data-credits="5">
+              <div class="provider-left">
+                <div class="drag-handle">⋮⋮</div>
+                <div class="provider-logo navy">Dl</div>
+                <div class="provider-name">Dealingp</div>
+              </div>
+              <div class="provider-right">
+                <div class="credit-pill">⭐ 6</div>
+                <div class="toggle active"></div>
+              </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="v3-footer">
+    <div class="credits-summary" id="averageCredits">
+      ~3 per result
+    </div>
+
+    <div class="mode-switch">
+      <label class="switch">
+        <input type="checkbox" id="advancedToggle">
+        <span class="slider"></span>
+      </label>
+      <span class="mode-label">A</span>
+    </div>
+
+    <button class="btn-primary" id="v3Start">
+      ⚡ Start enrichment
+    </button>
+  </div>
+
+  </div>
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
