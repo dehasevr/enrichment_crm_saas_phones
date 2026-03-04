@@ -307,7 +307,7 @@
       <!-- HEADER -->
       <div class="v3-header">
         <div>
-          <h2>Find phone number</h2>
+          <h2 id="modalTitle">Find phone number</h2>
           <p>We'll search for phone numbers using your prospect's existing data.</p>
         </div>
         <button class="close-btn" id="v3Close">✕</button>
@@ -317,19 +317,26 @@
       <div class="v3-body">
 
         <!-- SIMPLE SUMMARY (always visible) -->
+        <div class="providers-label">
+          <strong>Data providers used</strong>
+        </div>
         <div class="simple-providers-row">
           <div class="provider-mini purple">W</div>
           <div class="arrow">→</div>
           <div class="provider-mini green">Z</div>
           <div class="arrow">→</div>
-          <div class="provider-mini navy">D</div>
+          <div class="provider-mini navy">Dr</div>
+          <div class="arrow">→</div>
+          <div class="provider-mini purple">Dp</div>
+          <div class="arrow">→</div>
+          <div class="provider-mini green">Dl</div>
+          
         </div>
 
         <!-- ADVANCED (hidden by default) -->
         <div id="advancedMode" style="display:none;">
 
           <div class="v3-section-title">
-            <strong>Data providers</strong>
             <span>Drag and drop providers to change the order.</span>
           </div>
 
@@ -363,7 +370,7 @@
             <div class="provider-card" data-credits="5">
               <div class="provider-left">
                 <div class="drag-handle">⋮⋮</div>
-                <div class="provider-logo navy">Dr</div>
+                <div class="provider-logo purple">Dr</div>
                 <div class="provider-name">Dealroom</div>
               </div>
               <div class="provider-right">
@@ -372,14 +379,14 @@
               </div>
             </div>
 
-            <div class="provider-card" data-credits="30">
+            <div class="provider-card" data-credits="15">
               <div class="provider-left">
                 <div class="drag-handle">⋮⋮</div>
-                <div class="provider-logo navy">Dp</div>
+                <div class="provider-logo green">Dp</div>
                 <div class="provider-name">Deal Prov</div>
               </div>
               <div class="provider-right">
-                <div class="credit-pill">⭐ 30</div>
+                <div class="credit-pill">⭐ 15</div>
                 <div class="toggle active"></div>
               </div>
             </div>
@@ -398,32 +405,32 @@
         </div>
       </div>
 
-<!-- FOOTER -->
-<div class="v3-footer">
+      <!-- FOOTER -->
+      <div class="v3-footer">
 
-  <div class="footer-left">
+        <div class="footer-left">
 
-    <label class="switch">
-      <input type="checkbox" id="advancedToggle" checked>
-      <span class="slider"></span>
-    </label>
+          <label class="switch">
+            <input type="checkbox" id="advancedToggle" checked>
+            <span class="slider"></span>
+          </label>
 
-    <span class="customize-label">Customize providers</span>
+          <span class="customize-label">Customize providers</span>
 
-    <div class="credits-pill" id="averageCredits">
-      Up to 30 credits
+          <div class="credits-pill" id="averageCredits">
+            Up to 15 credits
+          </div>
+
+        </div>
+
+        <button class="btn-primary" id="v3Start">
+          ⚡ Start enrichment
+        </button>
+
+      </div>
+
     </div>
-
   </div>
-
-  <button class="btn-primary" id="v3Start">
-    ⚡ Start enrichment
-  </button>
-
-</div>
-
-  </div>
-</div>
 
   <script src="script.js"></script>
 

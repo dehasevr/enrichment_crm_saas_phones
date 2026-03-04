@@ -894,3 +894,13 @@ gap:10px;
 font-size:13px;
 color:#6b7280;
 }
+
+.simple-providers{
+margin-top:16px;
+}
+
+.providers-label{
+margin-bottom:6px;
+font-size: 14px;
+font-weight: 600;
+}

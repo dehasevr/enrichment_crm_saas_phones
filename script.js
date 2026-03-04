@@ -17,6 +17,8 @@ const advancedBlock = document.getElementById("advancedMode");
 const sectionTitle = document.querySelector(".v3-section-title");
 const averageEl = document.getElementById("averageCredits");
 
+const modalTitle = document.getElementById("modalTitle");
+
 // =================
 // MODE SWITCH
 // =================
@@ -29,7 +31,7 @@ sectionTitle.style.display = "none";
 advancedBlock.style.display = "none";
 simpleRow.style.display = "flex";
 
-averageEl.textContent = "Up to 5 credits per result";
+averageEl.textContent = "Up to 15 credits per result";
 
 } else {
 
@@ -37,7 +39,7 @@ sectionTitle.style.display = "block";
 advancedBlock.style.display = "block";
 simpleRow.style.display = "none";
 
-updateAverage();
+updateCredits();
 
 }
 
@@ -83,6 +85,14 @@ advancedToggle.checked = modalMode === "advanced";
 applyMode();
 overlay.style.display = "flex";
 
+const count = activeRows.length;
+
+if (count > 1) {
+  modalTitle.textContent = `Find phone numbers (${count} prospects)`;
+} else {
+  modalTitle.textContent = "Find phone number";
+}
+
 });
 
 // =================
@@ -97,31 +107,29 @@ overlay.style.display = "none";
 // CREDITS CALC
 // =================
 
-function updateAverage() {
+function updateCredits() {
 
-const providers = document.querySelectorAll(".provider-card");
+  const providers = document.querySelectorAll(".provider-card");
 
-let total = 0;
-let active = 0;
+  let max = 0;
 
-providers.forEach(provider => {
+  providers.forEach(provider => {
 
-const toggle = provider.querySelector(".toggle");
+    const toggle = provider.querySelector(".toggle");
 
-if (toggle.classList.contains("active")) {
+    if (toggle.classList.contains("active")) {
 
-const credits = Number(provider.dataset.credits);
+      const credits = Number(provider.dataset.credits);
 
-total += credits;
-active++;
+      if (credits > max) {
+        max = credits;
+      }
 
-}
+    }
 
-});
+  });
 
-const result = active ? (total / active).toFixed(1) : 0;
-
-averageEl.textContent = `~${result} per result`;
+  averageEl.textContent = `Up to ${max} credits per prospect`;
 
 }
 
@@ -135,7 +143,7 @@ toggle.addEventListener("click", function () {
 
 this.classList.toggle("active");
 
-updateAverage();
+updateCredits();
 
 });
 
@@ -193,7 +201,7 @@ container.insertBefore(draggedCard, this);
 
 }
 
-updateAverage();
+updateCredits();
 
 });
 
@@ -337,7 +345,7 @@ launchLaterBtn?.addEventListener("click", closeLaunch);
 // INIT
 // =================
 
-updateAverage();
+updateCredits();
 
 const advancedToggle = document.getElementById("advancedToggle");
 
